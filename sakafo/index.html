@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sakafo semaine</title>
+    <link rel="stylesheet" href="../sakafo/css/style.css">
+    <script src="../sakafo/js/generation.js"></script>
+
+</head>
+<div>
+    <script>const insrtionval = new GenerateValue();</script>
+</div>
+<body>
+    <div>
+        <input type="text" class="platname"placeholder="ajouter un menu">
+        <input type="text" class="value"placeholder=" ingredient">
+        <input type="number" class="prix"placeholder="prix">
+        <button onclick="insrtionval.setStorageItem();" >
+            add
+        </button>
+        <button onclick="insrtionval.removeItem();" >
+            remove
+        </button>
+        <div>
+            total <script></script>
+        </div>
+        <table>
+            <thead>
+                <th>repas</th>
+                <th>specificité</th>
+                <th>prix</th>
+            </thead>
+            <tbody>
+               
+            </tbody>
+        </table>
+    </div>
+    <script src="../sakafo/js/taking.js"></script>
+
+</body>
+</html>
