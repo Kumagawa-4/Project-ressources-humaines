@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../sakafo/css/style_demande.css">
+  <title>Soumettre une demande</title>
+  <style>
+    ul {
+      list-style-type: none;
+    }
+    ul ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Soumettre une demande</h1>
+  <form action="/demande" method="POST" id="insert_demande">
+    <label for="titre">Titre de la demande :</label>
+    <input type="text" id="titre" name="titre" required><br><br>
+
+    <label for="volumeActuel">Volume de travail effectué actuellement :</label>
+    <input type="number" id="volumeActuel" name="volumeActuel" required><br><br>
+
+    <label for="volumeRecherche">Volume de travail recherché :</label>
+    <input type="number" id="volumeRecherche" name="volumeRecherche" required><br><br>
+
+    <p>Critères de recrutement :</p>
+    <ul>
+      <li>
+        <input type="checkbox" id="critereDiplome" name="critere" value="Diplôme">
+        <label for="critereDiplome">Diplôme</label>
+        <ul>
+          <li>
+            <input type="checkbox" id="critereDiplomeLicence" name="critere" value="Licence">
+            <label for="critereDiplomeLicence">Licence</label>
+          </li>
+          <li>
+            <input type="checkbox" id="critereDiplomeMaster" name="critere" value="Master">
+            <label for="critereDiplomeMaster">Master</label>
+          </li>
+          <li>
+            <input type="checkbox" id="critereDiplomeDoctorat" name="critere" value="Doctorat">
+            <label for="critereDiplomeDoctorat">Doctorat</label>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <input type="checkbox" id="critereStatut" name="critere" value="Statut">
+        <label for="critereStatut">Statut</label>
+        <ul>
+          <li>
+            <input type="checkbox" id="critereStatutBasse" name="critere" value="Statut:Basse">
+            <label for="critereStatutBasse">Basse</label>
+          </li>
+          <li>
+            <input type="checkbox" id="critereStatutMoyen" name="critere" value="Statut:Moyen">
+            <label for="critereStatutMoyen">Moyen</label>
+          </li>
+          <li>
+            <input type="checkbox" id="critereStatutHaut" name="critere" value="Statut:Haut">
+            <label for="critereStatutHaut">Haut</label>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <input type="checkbox" id="critereAdresse" name="critere" value="Adresse">
+        <label for="critereAdresse">Adresse</label>
+        <ul>
+          <li>
+            <input type="checkbox" id="critereAdresseVille" name="critere" value="Adresse:Ville">
+            <label for="critereAdresseVille">Ville</label>
+          </li>
+          <li>
+            <input type="checkbox" id="critereAdressePays" name="critere" value="Adresse:Pays">
+            <label for="critereAdressePays">Compagnie</label>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <input type="submit" value="Soumettre">
+</form>
+<script src="../sakafo/js/script.js"></script>
+
+</body>
+</html>
