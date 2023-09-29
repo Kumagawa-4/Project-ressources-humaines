@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="../sakafo/css/style_annonce.css">
+
+  <title>Annonce d'offre d'emploi</title>
+</head>
+<body>
+  <div>
+    <label for="title">Titre :</label>
+    <input type="text" id="title">
+  </div>
+  <div>
+    <label for="description">Description :</label>
+    <textarea id="description"></textarea>
+  </div>
+  <div>
+    <label for="requirements">Exigences (une par ligne) :</label>
+    <textarea id="requirements"></textarea>
+  </div>
+  <div>
+    <label for="benefits">Avantages :</label>
+    <textarea id="benefits"></textarea>
+  </div>
+  <div>
+    <label for="companyDescription">Description de l'entreprise :</label>
+    <textarea id="companyDescription"></textarea>
+  </div>
+  <div>
+    <label for="applicationEmail">Adresse e-mail pour postuler :</label>
+    <input type="email" id="applicationEmail">
+  </div>
+  <div>
+    <button onclick="createJobListing()">Créer l'annonce</button>
+  </div>
+
+  <div id="jobListingContainer"></div>
+
+  <script src="../sakafo/js/create_annonce.js"></script>
+</body>
+</html>
+
+Remote interface must be stored in separate EJB client jar in order to reference it from other projects

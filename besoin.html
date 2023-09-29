@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Définir les besoins d'une entreprise</title>
+  <script>
+    function definirBesoins() {
+      // Récupérer les valeurs des inputs
+      var besoinPersonnel = parseFloat(document.getElementById('besoinPersonnel').value);
+      var besoinTache = parseFloat(document.getElementById('besoinTache').value);
+      var besoinHoraire = parseFloat(document.getElementById('besoinHoraire').value);
+      var besoinJour = parseFloat(document.getElementById('besoinJour').value);
+
+      // Calculer les besoins en financement, personnel et matériel
+      var besoinFinancement = besoinPersonnel * besoinTache;
+      var besoinMateriel = besoinPersonnel * (besoinHoraire * besoinJour);
+
+      // Afficher les résultats
+      var resultat = document.getElementById('resultat');
+      resultat.innerHTML = "Les besoins sont les suivants :<br>" +
+                           "- Besoin en financement : " + besoinFinancement + "<br>" +
+                           "- Besoin en personnel : " + besoinPersonnel + "<br>" +
+                           "- Besoin en matériel : " + besoinMateriel;
+    }
+  </script>
+</head>
+<body>
+  <h1>Définir les besoins d'une entreprise</h1>
+  
+  <label for="besoinPersonnel">Besoin en personnel :</label>
+  <input type="number" id="besoinPersonnel"><br><br>
+  
+  <label for="besoinTache">Volume de tâches accompli par rapport au besoin :</label>
+  <input type="number" id="besoinTache"><br><br>
+  
+  <label for="besoinHoraire">Volume horaire nécessaire :</label>
+  <input type="number" id="besoinHoraire"><br><br>
+  
+  <label for="besoinJour">Volume en jours nécessaires :</label>
+  <input type="number" id="besoinJour"><br><br>
+  
+  <button onclick="definirBesoins()">Définir les besoins</button>
+  
+  <h2>Résultat :</h2>
+  <div id="resultat"></div>
+</body>
+</html>
