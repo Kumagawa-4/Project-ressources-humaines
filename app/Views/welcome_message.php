@@ -11,6 +11,8 @@
     </h1>
     <div>
         <a href="/inscription">inscription</a>
+        <a href="/generationAutomatique">generation_auto</a>
+
     </div>
 </body>
 </html>

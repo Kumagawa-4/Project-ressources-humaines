@@ -29,3 +29,15 @@ CREATE TABLE new_inscription (
     job_source VARCHAR(255) NOT NULL,
     date DATE NOT NULL
 );
+create table admition (
+   Nom varchar(255) ,
+   Note integer
+) ;
+
+create table Note(
+    NomAttribut varchar(255),
+    NoteAttribut decimal,
+    appreciation varchar(25)
+    total integer
+);
+

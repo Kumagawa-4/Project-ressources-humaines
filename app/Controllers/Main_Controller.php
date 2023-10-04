@@ -16,4 +16,7 @@ class Main_Controller extends Controller {
         $newInscriptionModel->insert($data['formvalues']);
         return view("Inscription_result", $data);
     }
+    public function CandidateNumber ($number){
+       
+    }
 }

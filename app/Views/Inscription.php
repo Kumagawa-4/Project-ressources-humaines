@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription Form</title>
+    <?= link_tag('css/inscription.css') ?>
 </head>
 <body>
     <h1>Inscription Form</h1>
-    <form action="/view_controller_result" method="POST">
-        
+    <form action="/view_controller_result" method="POST" enctype="multipart/form-data" >
+
         <label for="full_name">Full Name:</label>
         <input type="text" id="full_name" name="full_name" required><br>
 
@@ -70,7 +71,7 @@
         <textarea id="skills" name="skills" rows="4" required></textarea><br>
 
         <label for="certification">Certification:</label>
-        <input type="text" id="certification" name="certification" required><br>
+        <input type="file" id="certification" name="certification" required><br>
 
         <label for="job_source">Job Source:</label>
         <input type="text" id="job_source" name="job_source" required><br>
