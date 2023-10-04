@@ -8,3 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 $routes->get('/inscription','Inscription_Controller::Inscription_views') ;
+
+$routes->post('/submit-form', 'Main_Controller::FormSubmit');
+
+$routes->post('/view_controller_result', 'Main_Controller::inscription_submit_view');
+
+$routes->get('test', 'TestController::index');
+ 
