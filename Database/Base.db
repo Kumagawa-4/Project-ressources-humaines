@@ -1,0 +1,191 @@
+create database inscription ;
+
+\c inscription ;
+
+
+CREATE TABLE new_inscription (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    zip VARCHAR(20) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    position_title VARCHAR(255) NOT NULL,
+    department VARCHAR(255) NOT NULL,
+    application_date DATE NOT NULL,
+    university VARCHAR(255) NOT NULL,
+    major VARCHAR(255) NOT NULL,
+    graduation_year VARCHAR(10) NOT NULL,
+    company_name VARCHAR(255) NOT NULL,
+    job_title VARCHAR(255) NOT NULL,
+    employment_start_date DATE NOT NULL,
+    employment_end_date DATE NOT NULL,
+    responsibilities TEXT NOT NULL,
+    skills TEXT NOT NULL,
+    certification VARCHAR(255) NOT NULL,
+    job_source VARCHAR(255) NOT NULL,
+    date DATE NOT NULL
+);
+create table admition (
+   Nom varchar(255) ,
+   Note integer
+   
+) ;
+
+create table Note(
+    NomAttribut varchar(255),
+    NoteAttribut decimal,
+    appreciation varchar(25)
+    total integer
+);
+
+CREATE TABLE IF NOT EXISTS demande (
+      idDemande SERIAL PRIMARY KEY,
+      entreprise_name VARCHAR(100),
+      inputDescription VARCHAR(100),
+      inputStatus VARCHAR(100),
+      nb_empoier INTEGER,
+      vl_actuelle DECIMAL(10, 2),
+      vl_rechercher DECIMAL(10, 2),
+      saliare_mi INTEGER,
+      salaire_ma INTEGER,
+      durrée_annonce INTEGER ,
+      date DATE
+    );
+CREATE TABLE Cv(
+      idCv SERIAL PRIMARY KEY,
+      Name VARCHAR(100),
+      date DATE
+);
+-- Création de la table "entreprise"
+CREATE TABLE entreprise (
+  identreprise SERIAL PRIMARY KEY,
+  nom_entreprise VARCHAR(100) NOT NULL,
+  password VARCHAR(255),
+  adresse VARCHAR(255),
+  telephone VARCHAR(20),
+  email VARCHAR(100),
+  description TEXT,
+  logo BYTEA,
+);
+CREATE TABLE cv (
+  idCv SERIAL PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  prenom VARCHAR(100) NOT NULL,
+  date_naissance DATE NOT NULL,
+  adresse VARCHAR(255) NOT NULL,
+  telephone VARCHAR(20) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  description TEXT NOT NULL,
+  diplome VARCHAR(100) NOT NULL,
+  image BYTEA,
+  password VARCHAR(100) 
+);
+CREATE TABLE employes (
+  id SERIAL PRIMARY KEY,
+  nom VARCHAR(100),
+  date_naissance DATE NOT NULL,
+  poste VARCHAR(100),
+  numero_cnaps INTEGER,
+  date_embauche DATE NOT NULL,
+  salaire_brut INTEGER,
+  salaire_net INTEGER,
+  matricule VARCHAR(100),
+  premier_conge INTEGER,
+  congee_cumul INTEGER,
+  superieur_hierarchique VARCHAR(100),
+  id_entreprise INTEGER,
+  FOREIGN KEY (id_entreprise) REFERENCES entreprise(identreprise)
+);
+UPDATE employes SET congee_cumul = congee_cumul + 3;
+
+
+INSERT INTO employes (nom, date_naissance, poste, numero_cnaps, date_embauche, salaire_brut, salaire_net, matricule, premier_conge, congee_cumul, superieur_hierarchique)
+VALUES ('John Doe', '1990-01-01', 'Manager', 123456789, '2020-01-01', 50000, 40000, 'EMP001', 1, 10, 'Nero');
+
+CREATE TABLE activitee (
+  id SERIAL PRIMARY KEY,
+  employe_id INTEGER,
+  designation VARCHAR(100),
+  nombre INTEGER,
+  taux DECIMAL(10, 2),
+  montant DECIMAL(10, 2),
+  date DATE,
+  FOREIGN KEY (employe_id) REFERENCES employes(id)
+);
+
+CREATE TABLE conges (
+  id SERIAL PRIMARY KEY,
+  employe_id INTEGER,
+  date_debut DATE,
+  date_fin DATE,
+  type_conge_id INTEGER,
+  situation_conge_id INTEGER,
+  FOREIGN KEY (employe_id) REFERENCES employes(id),
+  FOREIGN KEY (type_conge_id) REFERENCES typescongés(id),
+  FOREIGN KEY (situation_conge_id) REFERENCES situationscongés(id)
+);
+CREATE TABLE fichespaie (
+  id SERIAL PRIMARY KEY,
+  employe JSONB,
+  activites JSONB,
+  conges JSONB,
+  mois INTEGER,
+  annee INTEGER
+);
+
+CREATE TABLE typescongés (
+  id SERIAL PRIMARY KEY,
+  nom VARCHAR(100),
+  deductibilité BOOLEAN,
+  special BOOLEAN
+);
+-- Congé payé
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé payé', true, false);
+
+-- Congé maladie
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé maladie', true, false);
+
+-- Congé maternité
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé maternité', true, false);
+
+-- Congé paternité
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé paternité', true, false);
+
+-- Congé sabbatique
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé sabbatique', false, false);
+
+-- Congé parental
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé parental', true, false);
+
+-- Congé non payé
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé non payé', false, false);
+
+-- Congé de formation
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé de formation', true, false);
+
+-- Congé de mariage
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé de mariage', true, false);
+
+-- Congé pour décès
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé pour décès', true, false);
+
+-- Congé de démission
+INSERT INTO typescongés (nom, deductibilité, special) VALUES ('Congé de démission', true, false);
+
+CREATE TABLE situationscongés (
+  id SERIAL PRIMARY KEY,
+  nom VARCHAR(100)
+);
+
+Liste des views :
+CREATE VIEW vue_conges_speciaux_par_employe AS
+SELECT e.nom AS employe_nom, COUNT(*) AS nombre_conges_speciaux
+FROM conges c
+JOIN employes e ON c.employe_id = e.id
+JOIN typescongés t ON c.type_conge_id = t.id
+WHERE t.special = TRUE
+GROUP BY e.nom;
